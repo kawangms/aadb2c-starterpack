@@ -5,7 +5,7 @@ env:
   tenant: wk2c.onmicrosoft.com
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
