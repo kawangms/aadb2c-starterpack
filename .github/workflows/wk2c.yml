@@ -14,7 +14,7 @@ jobs:
       with:
         folder: "./SocialAndLocalAccountsWithMfa"
         files: "TrustFrameworkBase.xml,TrustFrameworkExtensions.xml,SignUpOrSignin.xml"
-        replacements: yourtenant.=wk2c.
+        replacements: "yourtenant=wk2c"
     - name: 'Upload TrustFrameworkBase Policy'
       uses: azure-ad-b2c/deploy-trustframework-policy@v3
       with:
