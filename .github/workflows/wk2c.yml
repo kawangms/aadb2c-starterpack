@@ -9,11 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Replace Action
-      uses: datamonsters/replace-action@v2
+    # - name: Replace Action
+    #   uses: datamonsters/replace-action@v2
+    #   with:
+    #     files: "./SocialAndLocalAccountsWithMfa/TrustFrameworkBase.xml,./SocialAndLocalAccountsWithMfa/TrustFrameworkExtensions.xml,./SocialAndLocalAccountsWithMfa/SignUpOrSignin.xml"
+    #     replacements: "yourtenant.=wk2c.,yourtenant=wk2c"
+    - name: Find and Replace
+      uses: jacobtomlinson/gha-find-replace@master
       with:
-        files: "./SocialAndLocalAccountsWithMfa/TrustFrameworkBase.xml,./SocialAndLocalAccountsWithMfa/TrustFrameworkExtensions.xml,./SocialAndLocalAccountsWithMfa/SignUpOrSignin.xml"
-        replacements: "yourtenant.=wk2c.,yourtenant=wk2c"
+        find: "yourtenant"
+        replace: "wk2c"
+        include: "*.xml"           
     - name: 'Upload TrustFrameworkBase Policy'
       uses: azure-ad-b2c/deploy-trustframework-policy@v3
       with:
