@@ -12,7 +12,7 @@ jobs:
     - name: Replace Action
       uses: datamonsters/replace-action@v2
       with:
-        files: "./SocialAndLocalAccountsWithMf/TrustFrameworkBase.xml,./SocialAndLocalAccountsWithMf/TrustFrameworkExtensions.xml,./SocialAndLocalAccountsWithMf/SignUpOrSignin.xml"
+        files: "./SocialAndLocalAccountsWithMfa/TrustFrameworkBase.xml,./SocialAndLocalAccountsWithMfa/TrustFrameworkExtensions.xml,./SocialAndLocalAccountsWithMfa/SignUpOrSignin.xml"
         replacements: "yourtenant.=wk2c."
     - name: 'Upload TrustFrameworkBase Policy'
       uses: azure-ad-b2c/deploy-trustframework-policy@v3
