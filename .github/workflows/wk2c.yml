@@ -19,7 +19,7 @@ jobs:
       with:
         find: "yourtenant"
         replace: "wk2c"
-        include: "*.xml"           
+        include: ".*xml"
     - name: 'Upload TrustFrameworkBase Policy'
       uses: azure-ad-b2c/deploy-trustframework-policy@v3
       with:
