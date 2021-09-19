@@ -3,23 +3,33 @@ on: push
 env:
   clientId: 27dfc9fe-a781-49c1-af38-ae3863dd06cf
   tenant: wk2c.onmicrosoft.com
+  ProxyIdentityExperienceFrameworkAppId: fd747d0b-a14b-41d8-9112-335a79aaa9e1
+  IdentityExperienceFrameworkAppId: 8ec2baa5-612b-427b-88c3-b8d342f9d52b
+
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    # - name: Replace Action
-    #   uses: datamonsters/replace-action@v2
-    #   with:
-    #     files: "./SocialAndLocalAccountsWithMfa/TrustFrameworkBase.xml,./SocialAndLocalAccountsWithMfa/TrustFrameworkExtensions.xml,./SocialAndLocalAccountsWithMfa/SignUpOrSignin.xml"
-    #     replacements: "yourtenant.=wk2c.,yourtenant=wk2c"
-    - name: Find and Replace
+    - name: Find and Replace yourtenant
       uses: jacobtomlinson/gha-find-replace@master
       with:
         find: "yourtenant"
         replace: "wk2c"
         include: ".*xml"
+    - name: Find and Replace ProxyIdentityExperienceFrameworkAppId
+      uses: jacobtomlinson/gha-find-replace@master
+      with:
+        find: "ProxyIdentityExperienceFrameworkAppId"
+        replace: ${{ env.ProxyIdentityExperienceFrameworkAppId }}
+        include: ".*xml"
+    - name: Find and Replace IdentityExperienceFrameworkAppId
+      uses: jacobtomlinson/gha-find-replace@master
+      with:
+        find: "IdentityExperienceFrameworkAppId"
+        replace: ${{ env.IdentityExperienceFrameworkAppId }}
+        include: ".*xml"            
     - name: 'Upload TrustFrameworkBase Policy'
       uses: azure-ad-b2c/deploy-trustframework-policy@v3
       with:
